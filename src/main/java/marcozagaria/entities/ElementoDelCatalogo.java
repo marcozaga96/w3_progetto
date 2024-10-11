@@ -65,7 +65,7 @@ public abstract class ElementoDelCatalogo {
                 ", titolo='" + titolo + '\'' +
                 ", annoPubblicazione=" + annoPubblicazione +
                 ", numeroPagine=" + numeroPagine +
-                ", prestiti=" + prestiti +
+
                 '}';
     }
 }
