@@ -1,12 +1,23 @@
 package marcozagaria.entities;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.List;
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "elementi_del_catalogo")
 public abstract class ElementoDelCatalogo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int codiceISBN;
     private String titolo;
     private LocalDate annoPubblicazione;
     private int numeroPagine;
+
+    @OneToMany(mappedBy = "elementoPrestato")
+    private List<Prestito> prestiti;
 
     public ElementoDelCatalogo(int codiceISBN, String titolo, LocalDate annoPubblicazione, int numeroPagine) {
         this.codiceISBN = codiceISBN;
@@ -15,13 +26,13 @@ public abstract class ElementoDelCatalogo {
         this.numeroPagine = numeroPagine;
     }
 
+    public ElementoDelCatalogo() {
+    }
+
     public int getCodiceISBN() {
         return codiceISBN;
     }
 
-    public void setCodiceISBN(int codiceISBN) {
-        this.codiceISBN = codiceISBN;
-    }
 
     public String getTitolo() {
         return titolo;

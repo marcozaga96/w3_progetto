@@ -1,9 +1,21 @@
 package marcozagaria.entities;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "prestiti")
 public class Prestito {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "utente_id")
     private Utente utente;
+    @ManyToOne
+    @JoinColumn(name = "elemento_catalogo_id")
     private ElementoDelCatalogo elementoPrestato;
     private LocalDate dataInizioPrestito;
     private LocalDate dataRestituzionePrevista;
@@ -15,6 +27,13 @@ public class Prestito {
         this.dataInizioPrestito = dataInizioPrestito;
         this.dataRestituzionePrevista = dataRestituzionePrevista;
         this.dataRestituzioneEffettiva = dataRestituzioneEffettiva;
+    }
+
+    public Prestito() {
+    }
+
+    public int getId() {
+        return id;
     }
 
     public Utente getUtente() {

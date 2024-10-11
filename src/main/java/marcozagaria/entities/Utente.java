@@ -1,18 +1,41 @@
 package marcozagaria.entities;
 
-import java.time.LocalDate;
+import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.util.List;
+
+@Entity
+@Table(name = "utenti")
 public class Utente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int numeroTessera;
     private String nome;
     private String cognome;
     private LocalDate dataNascita;
-    private int numeroTessera;
 
-    public Utente(String nome, String cognome, LocalDate dataNascita, int numeroTessera) {
+
+    @OneToMany(mappedBy = "utente")
+    private List<Prestito> prestiti;
+
+
+    public Utente(String nome, String cognome, LocalDate dataNascita) {
         this.nome = nome;
         this.cognome = cognome;
         this.dataNascita = dataNascita;
         this.numeroTessera = numeroTessera;
+    }
+
+    public Utente() {
+    }
+
+    public List<Prestito> getPrestiti() {
+        return prestiti;
+    }
+
+    public void setPrestiti(List<Prestito> prestiti) {
+        this.prestiti = prestiti;
     }
 
     public String getNome() {

@@ -1,7 +1,12 @@
 package marcozagaria.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "libri")
 public class Libro extends ElementoDelCatalogo {
     private String autore;
     private String genere;
@@ -10,6 +15,9 @@ public class Libro extends ElementoDelCatalogo {
         super(codiceISBN, titolo, annoPubblicazione, numeroPagine);
         this.autore = autore;
         this.genere = genere;
+    }
+
+    public Libro() {
     }
 
     public String getAutore() {
