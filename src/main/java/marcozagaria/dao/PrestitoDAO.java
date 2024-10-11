@@ -18,6 +18,5 @@ public class PrestitoDAO {
         transaction.commit();
         System.out.println("L'elemento " + prestito.getId() + " è stato salvato correttamente");
     }
-
-
+    
 }

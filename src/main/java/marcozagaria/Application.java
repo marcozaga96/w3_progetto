@@ -54,10 +54,11 @@ public class Application {
             System.out.println(cercaUtente);
 
             //--------------------------------------metodi del prestito--------------------------------------------
-            Prestito prestito1 = new Prestito(utente1, libro1, LocalDate.of(2024, 9, 18), LocalDate.of(2024, 9, 18).plusDays(30), LocalDate.of(2024, 10, 10));
-            Prestito prestito2 = new Prestito(utente2, libro3, LocalDate.of(2024, 10, 7), LocalDate.of(2024, 9, 18).plusDays(30), LocalDate.of(2024, 10, 10));
-            prestitoDAO.save(prestito1);
-            prestitoDAO.save(prestito2);
+            Prestito prestito1 = new Prestito(cercaUtente, cercaISBN, LocalDate.of(2024, 9, 18), LocalDate.of(2024, 9, 18).plusDays(30), LocalDate.of(2024, 10, 10));
+
+//            prestitoDAO.save(prestito1);
+
+
 
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
