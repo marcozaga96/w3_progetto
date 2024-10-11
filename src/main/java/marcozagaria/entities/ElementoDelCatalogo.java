@@ -19,7 +19,7 @@ public abstract class ElementoDelCatalogo {
     @OneToMany(mappedBy = "elementoPrestato")
     private List<Prestito> prestiti;
 
-    public ElementoDelCatalogo(int codiceISBN, String titolo, LocalDate annoPubblicazione, int numeroPagine) {
+    public ElementoDelCatalogo(String titolo, LocalDate annoPubblicazione, int numeroPagine) {
         this.codiceISBN = codiceISBN;
         this.titolo = titolo;
         this.annoPubblicazione = annoPubblicazione;
@@ -56,5 +56,16 @@ public abstract class ElementoDelCatalogo {
 
     public void setNumeroPagine(int numeroPagine) {
         this.numeroPagine = numeroPagine;
+    }
+
+    @Override
+    public String toString() {
+        return "ElementoDelCatalogo{" +
+                "codiceISBN=" + codiceISBN +
+                ", titolo='" + titolo + '\'' +
+                ", annoPubblicazione=" + annoPubblicazione +
+                ", numeroPagine=" + numeroPagine +
+                ", prestiti=" + prestiti +
+                '}';
     }
 }

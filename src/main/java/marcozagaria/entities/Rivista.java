@@ -13,8 +13,8 @@ public class Rivista extends ElementoDelCatalogo {
     @Enumerated(EnumType.STRING)
     private Periodicità periodicità;
 
-    public Rivista(int codiceISBN, String titolo, LocalDate annoPubblicazione, int numeroPagine, Periodicità periodicità) {
-        super(codiceISBN, titolo, annoPubblicazione, numeroPagine);
+    public Rivista(String titolo, LocalDate annoPubblicazione, int numeroPagine, Periodicità periodicità) {
+        super(titolo, annoPubblicazione, numeroPagine);
         this.periodicità = periodicità;
     }
 

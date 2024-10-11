@@ -22,7 +22,7 @@ public class UtenteDAO {
 
     public Utente findBynumeroTessera(int numeroTessera) {
         Utente found = entityManager.find(Utente.class, numeroTessera);
-        if (found == null) throw new NotFoundException(numeroTessera);
+        if (found == null) throw new NotFoundException("numeroTessera non trovato");
         return found;
     }
 }

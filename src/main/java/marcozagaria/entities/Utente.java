@@ -24,7 +24,6 @@ public class Utente {
         this.nome = nome;
         this.cognome = cognome;
         this.dataNascita = dataNascita;
-        this.numeroTessera = numeroTessera;
     }
 
     public Utente() {
@@ -68,5 +67,15 @@ public class Utente {
 
     public void setNumeroTessera(int numeroTessera) {
         this.numeroTessera = numeroTessera;
+    }
+
+    @Override
+    public String toString() {
+        return "Utente{" +
+                "numeroTessera=" + numeroTessera +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", dataNascita=" + dataNascita +
+                '}';
     }
 }

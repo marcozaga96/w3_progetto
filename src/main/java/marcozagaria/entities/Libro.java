@@ -11,8 +11,8 @@ public class Libro extends ElementoDelCatalogo {
     private String autore;
     private String genere;
 
-    public Libro(int codiceISBN, String titolo, LocalDate annoPubblicazione, int numeroPagine, String autore, String genere) {
-        super(codiceISBN, titolo, annoPubblicazione, numeroPagine);
+    public Libro(String titolo, LocalDate annoPubblicazione, int numeroPagine, String autore, String genere) {
+        super(titolo, annoPubblicazione, numeroPagine);
         this.autore = autore;
         this.genere = genere;
     }
@@ -34,5 +34,17 @@ public class Libro extends ElementoDelCatalogo {
 
     public void setGenere(String genere) {
         this.genere = genere;
+    }
+
+    @Override
+    public String toString() {
+        return "Libro{" +
+                "codiceISBN=" + getCodiceISBN() +
+                ", titolo='" + getTitolo() + '\'' +
+                ", annoPubblicazione=" + getAnnoPubblicazione() +
+                ", numeroPagine=" + getNumeroPagine() +
+                ", autore='" + autore + '\'' +
+                ", genere='" + genere + '\'' +
+                '}';
     }
 }

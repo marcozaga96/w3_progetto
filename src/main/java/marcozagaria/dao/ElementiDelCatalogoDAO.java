@@ -26,11 +26,12 @@ public class ElementiDelCatalogoDAO {
         System.out.println("L'elemento " + elementoDelCatalogo.getTitolo() + " è stato salvato correttamente");
     }
 
-    public void findAnimalsByCodiceISBNAndDelete(int codiceISBN) {
+    public void findElementoDelCatalogoByCodiceISBNAndDelete(int codiceISBN) {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
-        Query query = entityManager.createQuery("DELETE FROM ElementoCatalogo e WHERE e.codiceISBN = :codiceISBN");
+        Query query = entityManager.createQuery("DELETE FROM ElementoDelCatalogo e WHERE e.codiceISBN = :codiceISBN");
         query.setParameter("codiceISBN", codiceISBN);
+        if (query != null) throw new NotFoundException("codiceISBN non trovato");
         int numCancellati = query.executeUpdate();
         transaction.commit();
         System.out.println(numCancellati + " elementi sono stati cancellati con successo");
@@ -38,26 +39,29 @@ public class ElementiDelCatalogoDAO {
 
     public ElementoDelCatalogo findByCodiceISBN(int codiceISBN) {
         ElementoDelCatalogo found = entityManager.find(ElementoDelCatalogo.class, codiceISBN);
-        if (found == null) throw new NotFoundException(codiceISBN);
+        if (found == null) throw new NotFoundException("codiceISBN non trovato");
         return found;
     }
 
-    public List<ElementoDelCatalogo> findAnimalsYear(LocalDate annoPubblicazione) {
+    public List<ElementoDelCatalogo> findByYear(LocalDate anno) {
         TypedQuery<ElementoDelCatalogo> query = entityManager.createQuery("SELECT e FROM ElementoDelCatalogo e WHERE e.annoPubblicazione = :anno", ElementoDelCatalogo.class);
-        query.setParameter("annoPubblicazione", annoPubblicazione);
+        query.setParameter("anno", anno);
+        if (query == null) throw new NotFoundException("anno non trovato");
         return query.getResultList();
     }
 
-    public List<Libro> ricercaPerAutore(String autore) {
+    public List<Libro> findByAutore(String autore) {
         TypedQuery<Libro> query = entityManager.createQuery("SELECT l FROM Libro l WHERE l.autore = :autore", Libro.class);
         query.setParameter("autore", autore);
+        if (query == null) throw new NotFoundException("autore non trovato");
         return query.getResultList();
     }
 
-    public List<ElementoDelCatalogo> ricercaPerTitolo(String titolo) {
+    public List<ElementoDelCatalogo> findByTitolo(String titolo) {
         TypedQuery<ElementoDelCatalogo> query = entityManager.createQuery(
-                "SELECT e FROM ElementoCatalogo e WHERE e.titolo LIKE :titolo", ElementoDelCatalogo.class);
+                "SELECT e FROM ElementoDelCatalogo e WHERE e.titolo LIKE :titolo", ElementoDelCatalogo.class);
         query.setParameter("titolo", "%" + titolo + "%");
+        if (query == null) throw new NotFoundException("titolo non trovato");
         return query.getResultList();
     }
 }
